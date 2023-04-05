@@ -1,6 +1,5 @@
 const userDb = require("./database/userDb");
-let formidable = require("formidable");
-let fs = require("fs");
+ let fs = require("fs");
 
 //generate user Id
 exports.generateUserId = async (params) => {
