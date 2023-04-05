@@ -6,7 +6,7 @@ const fileUpload = require("express-fileupload");
 const middleware = require('./middelware/error-handler');
 const app = express();
 
-if (process.env.NODE_ENV !== "production") {
+if (process.env.NODE_ENV == "production") {
   require("dotenv").config();
 }
 
