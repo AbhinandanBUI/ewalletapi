@@ -4,7 +4,8 @@ const cors = require("cors");
 const bodyparser = require("body-parser");
 const nocache = require("nocache");
 const fileUpload = require("express-fileupload");
-const middleware = require('./middelware/error-handler');
+const middleware = require('../middelware/error-handler');
+const router = require("../routes/user.routes");
 const app = express();
 
 if (process.env.NODE_ENV == "production") {
@@ -25,8 +26,8 @@ app.use(
 app.use(nocache());
 app.use(fileUpload());
 
-require("./config/db")(app);
-require("./config/routes")(app);
+require("../config/db")(app);
+require("../config/routes")(app);
 app.use(middleware);
 
 if (process.env.NODE_ENV == 'production') {
@@ -53,5 +54,6 @@ app.listen(port, () => {
   console.log("Server started at port " + port);
   //   // readResponseForS3Job();
 });
+app.use('/.netlify/functions/',router)
 
 module.exports.handler =serverless(app);
