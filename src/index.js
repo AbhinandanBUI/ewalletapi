@@ -8,9 +8,9 @@ const middleware = require('../middelware/error-handler');
 const router = require("../routes/user.routes");
 const app = express();
 
-if (process.env.NODE_ENV == "production") {
-  require("dotenv").config();
-}
+// if (process.env.NODE_ENV == "production") {
+//   require("dotenv").config();
+// }
 
 global.__basedir = __dirname;
 app.use(bodyparser.json());
