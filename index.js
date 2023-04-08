@@ -1,4 +1,5 @@
 const express = require("express");
+const serverless = require('serverless-http');
 const cors = require("cors");
 const bodyparser = require("body-parser");
 const nocache = require("nocache");
@@ -28,9 +29,9 @@ require("./config/db")(app);
 require("./config/routes")(app);
 app.use(middleware);
 
-// if (process.env.NODE_ENV == 'production') {
-//   require('./startup/prod')(app);
-// }
+if (process.env.NODE_ENV == 'production') {
+  require('./startup/prod')(app);
+}
 
 app.get("/", (req, res) => {
   res.send({ Hello: "World", API: "On the running mode", StatusCode: "200" });
@@ -53,4 +54,4 @@ app.listen(port, () => {
   //   // readResponseForS3Job();
 });
 
-module.exports = app;
+module.exports.handler =serverless(app);

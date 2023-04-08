@@ -96,6 +96,7 @@ exports.createAccount = async (params) => {
 exports.allloan_trans = async (params) => {
     let result = await laon_transDb.allloan_trans(params);
     if (result.length > 0) {
+        // removing 0 balance
         return result;
     } else {
         return 'no data';
